@@ -1,8 +1,11 @@
 /**
  *  小节： 1.5.1 类currency
- *  程序： 1-17 函数increment和output
+ *  程序： 1-16 把两个currency对象的值相加
 */
 #include "currency.h"
+#include <iostream>
+using std::cout;
+using std::endl;
 
 void currency::setValue(signType theSign, unsigned long theDollars, unsigned int theCents){
     //给对象的数据成员赋值
@@ -63,6 +66,25 @@ currency currency::add(const currency &x) const {
 
 
     return result;
+}
+
+currency &currency::increment(const currency &x){
+    //增加x
+    *this = add(x);
+    return *this;
+}
+
+void currency::output() const{
+    //输出对象的值
+    if (sign == minus)
+    {
+        std::cout << '-';
+    }
+    std::cout << '$' << dollars << '.';
+        if(cents < 10){
+            std::cout << '0';
+        }
+        std::cout << cents;
 }
 
 
